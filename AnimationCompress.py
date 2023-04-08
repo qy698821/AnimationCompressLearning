@@ -6,15 +6,15 @@ bvh_file_path = "data/walk60.bvh"
 motion_file_path_compress_float = "data/compress/walk60_compress_float.txt"
 motion_file_path_compress_unit16 = "data/compress/walk60_compress_unit16.txt"
 
-motion_file_path_uncompress_unit16 = "data/compress/walk60_uncompress_unit16.txt"
+# motion_file_path_uncompress_unit16 = "data/compress/walk60_uncompress_unit16.txt"
 
 uncompress_bvh_file = "data/walk60_uint16_uncompress.bvh"
 
 # data_range_min = -54
 # data_range_max = 70
 
-data_range_min = -360
-data_range_max = 360
+data_range_min = -180
+data_range_max = 180
 
 # translate the value from (left_min, left_max) to (right_min, right_max)
 def translate(value, left_min, left_max, right_min, right_max):
@@ -86,7 +86,7 @@ def write_the_motion_data(motion_data):
     save_as_uint(motion_data)
     print(motion_data)
 
-def write_uncompress_data(motion_data):
+def write_uncompress_data(motion_data, path):
     # with open(motion_file_path_uncompress_unit16, "w") as w:
     #     for frame_data in motion_data:
     #         for joint_data in frame_data:
@@ -94,7 +94,7 @@ def write_uncompress_data(motion_data):
     #             w.write("   ")
     #         w.write("\n")
     file_data = []
-    with open(uncompress_bvh_file, "r") as r:
+    with open(path, "r") as r:
         lines = r.readlines()
         for i in range(len(lines)):
             file_data.append(lines[i])
@@ -106,7 +106,7 @@ def write_uncompress_data(motion_data):
             frame_string = frame_string + str(joint_data) + "   "
         file_data.append(frame_string + "\n")
 
-    with open(uncompress_bvh_file, "w") as w:
+    with open(path, "w") as w:
         for line in file_data:
             w.write(line)
 
@@ -120,7 +120,7 @@ def main():
     # motion_data = read_from_float()
 
     motion_data = read_from_uint()
-    write_uncompress_data(motion_data)
+    write_uncompress_data(motion_data, uncompress_bvh_file)
     print(motion_data)
 
     # max_value = 0
