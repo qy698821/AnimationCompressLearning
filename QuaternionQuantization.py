@@ -40,6 +40,18 @@ def convert_rotation_data_to_quat(vector3_data):
         quat_data_all.append(quat_data_one_frame)
     return quat_data_all
 
+def convert_rotation_data_to_quat_no_quantization(vector3_data):
+    quat_data_all = []
+    for frame_data in vector3_data:
+        quat_data_one_frame = []
+        for i in range(len(frame_data)):
+            if i == 0:
+                continue
+            quat_data = R.from_euler("XYZ", [frame_data[i][0], frame_data[i][1], frame_data[i][2]], degrees=True).as_quat()
+            quat_data_one_frame.append(quat_data)
+        quat_data_all.append(quat_data_one_frame)
+    return quat_data_all
+
 # The bch file has root motion
 def get_root_joint_transform_data(vector3_data):
     root_data = []
