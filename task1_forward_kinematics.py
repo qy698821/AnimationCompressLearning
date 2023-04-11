@@ -71,7 +71,8 @@ def part3_retarget(viewer, T_pose_bvh_path, A_pose_bvh_path):
 def main():
     # create a viewer
     viewer = SimpleViewer()
-    bvh_file_path = "data/walk60_uint16_uncompress.bvh"
+    bvh_file_path = "data/walk60_uint16_uncompress_line_interp.bvh"
+    # bvh_file_path = "data/walk60_uint16_uncompress.bvh"
     # bvh_file_path = "data/walk60_uint16_uncompress_quat.bvh"
     # bvh_file_path = "data/walk60.bvh"
 
